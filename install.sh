@@ -618,11 +618,11 @@ EOF
 	download_all
 	create_uninstall
 
-	info <<"EOF"
+	info "\
 Installation finished!
 
 Clash binary has been installed to ${BIN_DIR}
 Default config directory is located at ${CONFIG_DIR}
 To update your installation just run this script again
-EOF
+"
 }
