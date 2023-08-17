@@ -165,9 +165,8 @@ http_download() {
 http_copy() {
 	tmp=$(mktemp)
 	http_download "${tmp}" "$1" "$2" || return 1
-	body=$(cat "$tmp")
+	cat "$tmp"
 	rm -f "${tmp}"
-	echo "$body"
 }
 cat /dev/null <<EOF
 ------------------------------------------------------------------------
