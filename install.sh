@@ -613,7 +613,6 @@ EOF
 {
 	verify_system
 	setup_env
-	download_binary
 	create_config
 	create_service_file
 	download_all
