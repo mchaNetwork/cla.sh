@@ -252,6 +252,7 @@ download_binary() {
 	info "Detected architecture: ${CLASH_ARCH}"
 	http_copy "${INSTALL_CLASH_RELEASE_URL}/${INSTALL_CLASH_VERSION}/clash-linux-${CLASH_ARCH}-${INSTALL_CLASH_VERSION}.gz" |
 		gzip -d >"${BIN_DIR}/clash"
+	chmod +x "${BIN_DIR}/clash"
 	info "Installed clash binary to ${BIN_DIR}/clash"
 }
 
@@ -367,10 +368,6 @@ dns:
     - 'proxy.golang.org'
     # - '+.*' ##! Enable the obsolete redir-host mode, ignores fake-ip. Must enable sniff-tls-sni in this case
 
-##! Enable this if your host have the performance & you don't run SNI proxy
-# experimental:
-#   sniff-tls-sni: true
-
   nameserver:
     - tls://dns.qvq.network:853
     - tls://loli.sese.network:853
@@ -381,6 +378,10 @@ dns:
   #   - tls://loli.sese.network:853
   #   - https://101.6.6.6:8443/dns-query # TUNA DNS
   #   - tls://8.8.8.8:853
+
+##! Enable this if your host have the performance & you don't run SNI proxy
+# experimental:
+#   sniff-tls-sni: true
 
 tun:
   enable: true
@@ -538,7 +539,7 @@ EOF
 }
 
 create_systemd_service_file() {
-	cat <<"EOF" >"${FILE_CLASH_SERVICE}"
+	cat <<EOF >"${FILE_CLASH_SERVICE}"
 [Unit]
 Description=A rule based proxy in Go.
 After=network-online.target
@@ -556,7 +557,7 @@ EOF
 }
 
 create_openrc_service_file() {
-	cat <<"EOF" >"${FILE_CLASH_SERVICE}"
+	cat <<EOF >"${FILE_CLASH_SERVICE}"
 #!/sbin/openrc-run
 
 command="${BIN_DIR}/clash"
@@ -583,7 +584,7 @@ create_service_file() {
 
 create_uninstall() {
 	info "Creating uninstall script ${UNINSTALL_CLASH_SH}"
-	cat <<"EOF" >"${UNINSTALL_CLASH_SH}"
+	cat <<EOF >"${UNINSTALL_CLASH_SH}"
 #!/bin/sh
 set -x
 [ \$(id -u) -eq 0 ] || exit 2
