@@ -479,10 +479,16 @@ rule-providers:
     url: "https://gh.chapro.xyz/raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
     path: ./ruleset/reject.yaml
     interval: 86400
-  direct:
+  cn:
     type: http
     behavior: domain
     url: "https://geosite.mcha.cloud/cn.yaml"
+    path: ./ruleset/cn.yaml
+    interval: 86400
+  direct:
+    type: http
+    behavior: domain
+    url: "https://gh.chapro.xyz/raw.githubusercontent.com/mchaNetwork/rules/master/clash/direct.yaml"
     path: ./ruleset/direct.yaml
     interval: 86400
   private:
@@ -515,13 +521,15 @@ rules:
   - RULE-SET,unbreak,Proxy
   - RULE-SET,private,DIRECT
   - RULE-SET,reject,Adblock
-  # - RULE-SET,steam,Steam
+  - RULE-SET,steam,Steam
   - RULE-SET,paypal,PayPal
   - DOMAIN-SUFFIX,openai.com,Geowall
-  - DOMAIN-KEYWORD,google,Geowall
-  - DOMAIN-KEYWORD,bing,Geowall
+  - DOMAIN-SUFFIX,oaistatic.com,Geowall
+  - DOMAIN,bard.google.com,Geowall
+  - DOMAIN-SUFFIX,bing.com,Geowall
   # - GEOIP,GAME,Game
   - RULE-SET,direct,DIRECT
+  - RULE-SET,cn,DIRECT
   - GEOIP,TELEGRAM,Telegram
   - GEOIP,PRIVATE,DIRECT
   - GEOIP,CN,DIRECT
