@@ -21,7 +21,7 @@ Directory to install systemd service and environment files to, or use
 
 - INSTALL_CLASH_RELEASE_URL
 URL to download clash binary from, or use
-https://clash-release.b-cdn.net as the default
+https://clash.chapro.xyz as the default
 
 - INSTALL_CLASH_VERSION
 Clash version to download and install, or use
@@ -239,7 +239,7 @@ setup_env() {
 	fi
 
 	# --- setup channel values
-	INSTALL_CLASH_RELEASE_URL=${INSTALL_CLASH_RELEASE_URL:-'https://clash-release.b-cdn.net'}
+	INSTALL_CLASH_RELEASE_URL=${INSTALL_CLASH_RELEASE_URL:-'https://clash.chapro.xyz'}
 	INSTALL_CLASH_VERSION=${INSTALL_CLASH_VERSION:-'latest'}
 }
 
